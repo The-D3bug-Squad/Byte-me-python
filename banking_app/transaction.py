@@ -1,5 +1,5 @@
 # transaction.py - Placeholder for transaction functionality
-
+from banking_app.user_management import read_users,write_users
 def transact(sender_account, receiver_account, amount):
     """
     Handles the transfer of funds between two user accounts.
@@ -44,4 +44,44 @@ def transact(sender_account, receiver_account, amount):
     """
 
     #hint should use read_users and write_users from user_management
+    
+    if sender_account == "" or receiver_account == "":
+            raise ValueError
+        
+    if sender_account == receiver_account:
+        raise ValueError
+    
+    if amount <= 0:
+        raise ValueError
+    
+    try:
+        users = read_users()
+        
+        sender = None
+        receiver = None
+        
+        for user in users:
+            if user["account_id"] == sender_account:
+                sender = user
+            
+            if user["account_id"] == receiver_account:
+                receiver = user
+                
+        if sender_account == "" or receiver_account == "":
+            raise ValueError
+        
+        if sender["balance"] < amount:
+            raise ValueError
+        
+        sender["balance"] -= amount
+        receiver["balance"] += amount
+        
+        write_users(users)
+    
+        return True
+    
+    except:
+        raise
+    
+    
 
