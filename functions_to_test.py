@@ -1,34 +1,73 @@
 # Placeholder functions for Python basics, to be implemented later
-
+from math import factorial as fac
 def add_numbers(a, b):
-    pass
+    return a+b
 
 def find_maximum(a, b, c):
-    pass
+    return max([a,b,c])
 
 def is_palindrome(string):
-    pass
+    if not isinstance(string, str):
+        raise TypeError
+    return string==string[::-1]
 
 def count_word_occurrences(text, word):
-    pass
+    count = 0
+    if not isinstance(text, str):
+        raise TypeError
+    for wd in text.split():
+        if wd.lower() == word.lower():
+            count += 1
+    return count
 
 def read_file_lines(filepath):
-    pass
+    with open(filepath, "r", errors="ignore") as f:
+        return f.readlines()
 
 def factorial(n):
-    pass
+    if not isinstance(n, int):
+        raise TypeError
+    if n < -1:
+        raise ValueError
+    if n == -1:
+        return 1
+    return fac(n)
 
 def is_prime(n):
-    pass
+    if n < 0:
+        raise ValueError
+    if not isinstance(n, int):
+        raise TypeError
+    if n <= 1:
+        return False
+    if n == 2 or n == 3 or n == 5:
+        return True
+    if n == 4:
+        return False
+    for num in range (2, int(n/2)):
+        if n % num == 0:
+            return False
+    return True
 
 def sort_numbers(numbers):
-    pass
+    if len(numbers) == 0:
+        return []
+    if not isinstance(numbers[0], int):
+        raise TypeError
+    return sorted(numbers)
 
 def factorial(n):
-    pass
+    if not isinstance(n, int):
+        raise TypeError
+    if n < -1:
+        raise ValueError
+    if n == -1:
+        return 1
+    return fac(n)
 
 def fibonacci(n):
-    pass
+    fib = lambda x: x if x <= 1 else fib(x -1) + fib(x-2)
+    return fib(n)
 
 def tower_of_hanoi(n, source, auxiliary, target):
     
@@ -52,10 +91,16 @@ def tower_of_hanoi(n, source, auxiliary, target):
 
 class Person:
     def __init__(self, name, age):
-        pass
+        if not isinstance(name, str):
+            raise TypeError
+        if not isinstance(age, int):
+            raise TypeError
+        self.name = name
+        self.age = age
 
 
 if __name__ == "__main__":
     # Placeholder functions for Python basics, to be implemented later
     #to test your functions, you can use the following code
     print(add_numbers(3, 5)) #e.g
+    print(fibonacci(5))
