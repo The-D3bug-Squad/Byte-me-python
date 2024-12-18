@@ -1,4 +1,5 @@
 # signup.py - Placeholder for signup functionality
+import re
 
 def signup(username, password, email):
     """
@@ -35,3 +36,31 @@ def signup(username, password, email):
     Returns:
     - bool: `True` if the signup is successful, otherwise raises a `ValueError` for invalid input.
     """
+    
+    if not username or not password or not email:
+        raise ValueError("The fields must not be empty")
+    
+
+    email__ = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    if not re.match(email__, email):
+        raise ValueError("Invalid email format")
+    
+    if len(password) < 8:
+        raise ValueError("Password must be at least 8 characters long")
+    
+    if not any(character.islower() for character in password):
+        raise ValueError("Password must contain at least one lowercase letter")
+    
+    if not any(character.isupper() for character in password):
+        raise ValueError("Password must contain at least one uppercase letter")
+    
+    if not any(character.isdigit() for character in password):
+        raise ValueError("Password must contain at least one digit")
+
+    
+    return True
+
+    
+    
+    
+    

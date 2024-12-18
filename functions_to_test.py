@@ -4,31 +4,58 @@ def add_numbers(a, b):
     pass
 
 def find_maximum(a, b, c):
-    pass
+    return max(a, b, c)
 
 def is_palindrome(string):
-    pass
+    return string == string[::-1]
 
 def count_word_occurrences(text, word):
-    pass
+    text = text.lower()
+    word = word.lower()
+    words = text.split()
+    count = words.count(word)
+    
+    return count
 
 def read_file_lines(filepath):
-    pass
+    with open(filepath, 'r') as f:
+        contents = f.readlines
+    return contents
 
 def factorial(n):
-    pass
+    x = 1
+    for i in range(1,n+1):
+        x*= i
+    return x
 
 def is_prime(n):
-    pass
+    if not isinstance(n, int):
+        raise TypeError(f"{n} is not an integer. Input must be an integer.")
+    
+    if n <= 1:
+        raise ValueError(f"{n} is not a prime number")
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            raise ValueError(f"{n} is not a prime number")
+    return True
+
 
 def sort_numbers(numbers):
     pass
 
 def factorial(n):
-    pass
+    x = 1
+    for i in range(1,n+1):
+        x*= i
+    return x
+
 
 def fibonacci(n):
-    pass
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fibonacci(n-1) + fibonacci(n-2)
 
 def tower_of_hanoi(n, source, auxiliary, target):
     
@@ -48,7 +75,12 @@ def tower_of_hanoi(n, source, auxiliary, target):
     >>> tower_of_hanoi(3, 'A', 'B', 'C')
     [('A', 'C'), ('A', 'B'), ('C', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'C'), ('A', 'C')]
     """
-    pass
+    if n == 1:
+        
+        print(f"Move disk 1 from {source} to {target}")
+        return
+    
+    
 
 class Person:
     def __init__(self, name, age):
