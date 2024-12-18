@@ -1,3 +1,4 @@
+import sys
 # login.py - Placeholder for login functionality
 
 def login(username, password):
@@ -33,3 +34,37 @@ def login(username, password):
     - bool: `True` if login is successful, `False` if login fails, or raises a `ValueError` for invalid input.
 
     """
+    if validate_input(username,password):
+        if authenticate_user(username, password):
+            return True
+
+    return False
+
+def validate_input(username, password):
+    if username == "" or password == "":
+        raise ValueError("Can not have empty password or username")
+    
+    if username.isalnum() == False:
+        raise ValueError("Username can not have special characters")
+
+    return True
+
+def authenticate_user(username,password): 
+    try:
+        with open("database.csv", "r") as file:
+            people = file.readlines()
+    except FileNotFoundError:
+        sys.exit("Database not found")
+
+    for person in people:
+        person = person.split(",")
+        if username in person:
+            return password_validation(password, person[1])
+
+    return False
+
+def password_validation(password1 , password2):
+    if password1 == password2:
+        return True
+    else:
+        return False

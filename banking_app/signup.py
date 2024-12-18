@@ -1,3 +1,4 @@
+import sys
 # signup.py - Placeholder for signup functionality
 
 def signup(username, password, email):
@@ -35,3 +36,45 @@ def signup(username, password, email):
     Returns:
     - bool: `True` if the signup is successful, otherwise raises a `ValueError` for invalid input.
     """
+
+    if validate_input(username, password, email):
+        return True
+    else:
+        raise ValueError("Invalid Input")
+
+def validate_input(username, password, email):
+    if username == "" or password == "" or email == "":
+        raise ValueError("Inputs can not me empty")
+    
+    "at least 8 characters long, contains a mix of uppercase, lowercase, and digits"
+    length = password<8
+    upper = password.isupper()
+    lower = password.islower()
+    digits = password.isalpha()
+
+    result = (length and upper and lower and digits)
+
+    match result:
+        case True:
+            return True
+        case False:
+            return False
+        
+def check_username(username):
+    try:
+        with open("database.csv", "r") as file:
+            people = file.readlines()
+    except FileNotFoundError:
+        sys.exit("Database not found")
+
+    for person in people:
+        person = person.split(",")
+        if username == person[0]:
+            raise ValueError("Username already taken")
+        
+    return True
+
+def create_user(username, password, email):
+    try:
+        with open("database.csv" , "r") as file:
+            
