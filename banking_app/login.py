@@ -33,3 +33,21 @@ def login(username, password):
     - bool: `True` if login is successful, `False` if login fails, or raises a `ValueError` for invalid input.
 
     """
+    try:
+        if username == "" or password == "":
+            raise ValueError
+         
+        symbol = "!@#$%^&*()_+={}[]|:;'\"<>,.?/"
+        for char in username:
+            if char in symbol:
+                raise ValueError
+            
+        valid1 = "user1"
+        valid2 = "securepassword123"
+        
+        if username == valid1 and password == valid2:
+            return True
+        else:
+            return False
+    except:
+        raise

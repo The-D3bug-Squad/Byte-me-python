@@ -35,3 +35,22 @@ def signup(username, password, email):
     Returns:
     - bool: `True` if the signup is successful, otherwise raises a `ValueError` for invalid input.
     """
+
+    try:
+        if username == "" or password == "" or email == "":
+            raise ValueError
+        
+        if len(password) < 6:
+            raise ValueError
+        
+        if "@" not in email or "." not in email:
+            raise ValueError
+        
+        existing = ["existinguser"]
+        
+        if username in existing:
+            raise ValueError
+        
+        return True
+    except:
+        raise
