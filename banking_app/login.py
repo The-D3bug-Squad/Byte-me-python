@@ -1,5 +1,5 @@
 # login.py - Placeholder for login functionality
-
+import csv
 def login(username, password):
     """
     Handles the user login process by verifying the provided username and password.
@@ -33,3 +33,24 @@ def login(username, password):
     - bool: `True` if login is successful, `False` if login fails, or raises a `ValueError` for invalid input.
 
     """
+
+    if not username or not password:
+        raise ValueError
+    
+    for char in username:
+        if not char.isalnum():
+            raise ValueError()
+        
+
+    path = r"C:\Users\User\Byte-me-python\database.csv" 
+    with open(path, mode='r', newline='', encoding='utf-8') as file:
+        reader = csv.reader(file)
+        for row in reader:
+
+            if username in row and row[username] == password:
+                return True
+            else:
+                return False
+
+    return True
+
