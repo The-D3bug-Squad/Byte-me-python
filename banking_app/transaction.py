@@ -1,6 +1,27 @@
 # transaction.py - Placeholder for transaction functionality
 
 def transact(sender_account, receiver_account, amount):
+    if sender_account==receiver_account:
+        raise ValueError
+    if amount<=0:
+        raise ValueError
+    
+    with open("database.csv",'r') as f:
+        the=f.read().splitlines()
+        for i in the:
+            i.split(',')
+    if sender_account not in the or receiver_account not in the:
+        raise ValueError
+    # else:
+
+    #     for i in the:
+    #         if sender_account in i:
+    #             if int(i[-1])<amount:
+    #                 raise ValueError
+    #             else:
+    #                 int(i[-1])-=amount
+    #         if receiver_account in i:
+    #             int(i[-1])+=amount
     """
     Handles the transfer of funds between two user accounts.
 
