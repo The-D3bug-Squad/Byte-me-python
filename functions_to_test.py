@@ -37,8 +37,20 @@ def read_file_lines(filepath):
 
 
 def factorial(n):
-    pass
+    fact = n
 
+    if type(n) != type(0):
+        raise TypeError("Invalid type!")
+    elif n == 0:
+        return 1
+    elif n < 0:
+        raise ValueError("Invalid number!")
+    for i in range(1, n):
+        fact = fact * i
+    return fact
+
+
+print(factorial(0))
 
 def is_prime(n):
     count = 0
@@ -57,6 +69,7 @@ def is_prime(n):
     elif type(n) != type(0):
         raise TypeError("Invalid input!")
 
+
 def sort_numbers(numbers):
     if numbers == []:
         return []
@@ -66,8 +79,6 @@ def sort_numbers(numbers):
         else:
             raise TypeError("Invalid list elements")
 
-def factorial(n):  ##??
-    pass
 
 def fibonacci(n):
     fibo_list = [0, 1]
