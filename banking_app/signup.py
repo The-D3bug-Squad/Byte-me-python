@@ -1,5 +1,5 @@
 # signup.py - Placeholder for signup functionality
-
+import re
 def signup(username, password, email):
     """
     Handles the user signup process by validating the provided username, password, and email.
@@ -35,3 +35,32 @@ def signup(username, password, email):
     Returns:
     - bool: `True` if the signup is successful, otherwise raises a `ValueError` for invalid input.
     """
+    if username == "" or password == "" or email == "":
+        raise ValueError
+
+    if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        raise ValueError
+
+    pass_pattern = r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(.{8,})$"
+    if not re.match(pass_pattern, password):
+        raise ValueError
+
+    """
+    username,password,email,account_id,balance
+    johndoe,hashed_password,johndoe@example.com,account1,1000.50
+    """
+
+    with open("database.csv", "r", errors="ignore") as f:
+        contents = f.readlines()
+    for user in contents:
+        user.replace("\n", "")
+        saved_username, other = user.split(",", 1)
+        if username == saved_username:
+            raise ValueError
+
+    with open("database.csv", "a") as f:
+        f.write(f"{username},{password},{email}")
+    return True
+
+if __name__ == "__main__":
+    signup("newuser", "SecurePass123", "newuser@example.com")
