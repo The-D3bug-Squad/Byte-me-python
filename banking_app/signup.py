@@ -1,6 +1,51 @@
 # signup.py - Placeholder for signup functionality
 
+import string
+def is_password_secure(password):
+    
+    uppercase=0
+    lowercase=0
+    digit=0
+    special=0
+
+    if len(password)<8:
+        return False
+    
+    for i in password:
+        if i.isupper():
+            uppercase += 1
+    if uppercase==0:
+        return False
+        
+    for i in password:
+        if i.islower():
+            lowercase += 1
+    if lowercase==0:
+        return False
+        
+    for i in password:
+        if i.isdigit():
+            digit+=1
+    if digit==0:
+        return False
+    
+    # for i in password:
+    #     if i in string.punctuation:
+    #         special+=1
+    # if special==0:
+    #     return False
+    return True  
+
+
+
+
 def signup(username, password, email):
+    if username=='' or password=='' or email=='':
+        raise ValueError
+    if is_password_secure(password)==False:
+        raise ValueError
+    else:
+        return True
     """
     Handles the user signup process by validating the provided username, password, and email.
 
