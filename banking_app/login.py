@@ -1,6 +1,10 @@
 # login.py - Placeholder for login functionality
 
 def login(username, password):
+
+     if username== ""  or password=="" :
+       raise ValueError("All field are requred")
+       print ("Signup susscessful!")
     """
     Handles the user login process by verifying the provided username and password.
 
