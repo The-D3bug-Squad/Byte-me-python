@@ -1,5 +1,5 @@
 # login.py - Placeholder for login functionality
-
+import re
 def login(username, password):
     """
     Handles the user login process by verifying the provided username and password.
@@ -33,3 +33,19 @@ def login(username, password):
     - bool: `True` if login is successful, `False` if login fails, or raises a `ValueError` for invalid input.
 
     """
+
+    if username == "" or password == "":
+        raise ValueError
+
+    if not re.match(r"^[a-zA-Z0-9]{3,}$", username):
+        raise ValueError
+
+    with open("database.csv", "r", errors="ignore") as f:
+        contents = f.readlines()
+    for user in contents:
+        user.replace("\n", "")
+        saved_username, saved_password, other = user.split(",", 2)
+
+        if username == saved_username and password == saved_password:
+            return True
+    return False
