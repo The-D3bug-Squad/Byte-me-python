@@ -1,6 +1,35 @@
 # signup.py - Placeholder for signup functionality
 
 def signup(username, password, email):
+    if username and password and email == None:
+        raise ValueError
+    
+    if username in Database_file.csv:
+        raise ValueError
+
+    if len(password) >= 8 :
+        
+        special = False
+        lowerCase = False
+        upperCase = False
+        num = False
+        
+        for char in password:
+            if (char.isdigit()):
+                num = True
+            if (char.islower()):
+                lowerCase = True
+            if (char.isupper()):
+                upperCase = True
+            if (not char.isalnum() and char != ' '):
+                
+                special = True
+               
+        return num and lowerCase and upperCase and special
+    
+    return False
+
+    
     """
     Handles the user signup process by validating the provided username, password, and email.
 
