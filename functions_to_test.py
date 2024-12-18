@@ -3,8 +3,10 @@
 def add_numbers(a, b):
     return a + b
 
+
 def find_maximum(a, b, c):
     return max(a, b, c)
+
 
 def is_palindrome(string):
     if type(string) == type("stirng"):
@@ -14,6 +16,7 @@ def is_palindrome(string):
             return False
     else:
         raise TypeError("Invalid input!")
+    
 
 def count_word_occurrences(text, word):
     if type(text) == type(word):
@@ -23,6 +26,7 @@ def count_word_occurrences(text, word):
         return count
     else:
         raise TypeError("Invalid type entered")
+    
 
 def read_file_lines(filepath):
     try:
@@ -31,19 +35,28 @@ def read_file_lines(filepath):
     except FileNotFoundError as e:
         print(e)
 
+
 def factorial(n):
     pass
 
+
 def is_prime(n):
-    try:
-        if type(n) == type(0):
-            outcome = is_prime(n)
-            return outcome
-    except TypeError as e:
-        print(e)
-    except RecursionError as e:
-        print(e)
-    
+    count = 0
+    if type(n) == type(0):
+        if n == 1:
+            return False
+        elif n < 0:
+            raise ValueError("Prime not defined for negative numbers")
+        for i in range(1, n + 1):
+            if n % i == 0:
+                count += 1
+        if count > 2:
+            return False
+        else:
+            return True
+    elif type(n) != type(0):
+        raise TypeError("Invalid input!")
+
 def sort_numbers(numbers):
     if numbers == []:
         return []
@@ -53,7 +66,7 @@ def sort_numbers(numbers):
         else:
             raise TypeError("Invalid list elements")
 
-def factorial(n):
+def factorial(n):  ##??
     pass
 
 def fibonacci(n):
