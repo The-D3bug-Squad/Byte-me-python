@@ -34,13 +34,7 @@ def read_file_lines(filepath):
 
 
 def factorial(n):
-    answer = 1
-    for i in range(1, n + 1):
-        if i != n:
-            print(i)
-            answer *= i * i + 1
-        else:
-            answer *= n
+    pass
 
 def is_prime(n):
     try:
@@ -63,7 +57,15 @@ def factorial(n):
     pass
 
 def fibonacci(n):
-    pass
+    fibo_list = [0, 1]
+
+    for i in range(n - 1):
+        fibo_list.append(fibo_list[len(fibo_list) - 2] + fibo_list[len(fibo_list) -1])
+
+    return fibo_list[n]
+    
+    
+print(fibonacci(15))
 
 def tower_of_hanoi(n, source, auxiliary, target):
     
