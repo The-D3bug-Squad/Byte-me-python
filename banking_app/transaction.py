@@ -44,4 +44,8 @@ def transact(sender_account, receiver_account, amount):
     """
 
     #hint should use read_users and write_users from user_management
+    if sender_account == "" or receiver_account == "":
+        raise ValueError
+    if amount <= 0:
+        raise ValueError
 
