@@ -1,7 +1,21 @@
 # signup.py - Placeholder for signup functionality
 
 def signup(username, password, email):
-    """
+
+   if username== ""  or password=="" or email== "":
+       raise ValueError("All field are requred")
+   print ("Signup susscessful!")
+
+   if (len(password) < 8 or 
+    all(char.isdigit() == False for char in password) or 
+    all(char.isupper() == False for char in password) or 
+    all(char.islower() == False for char in password) or 
+    all(char in "!@#$%^&*()_+-=[]{}|;:',.<>?/`~" == False for char in password)):
+       raise ValueError("Password does not meet minimum requirements")
+ 
+
+
+"""
     Handles the user signup process by validating the provided username, password, and email.
 
     Instructions for Implementation:
