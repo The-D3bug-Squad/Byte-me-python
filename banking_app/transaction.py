@@ -1,6 +1,23 @@
 # transaction.py - Placeholder for transaction functionality
 
 def transact(sender_account, receiver_account, amount):
+    if sender_account and receiver_account == None:
+        return False
+    
+    elif sender_account == receiver_account:
+        raise ValueError
+    
+    elif amount <= 0:
+        raise ValueError
+    
+    if sender_account and receiver_account not in database:
+        raise ValueError
+
+
+    if sender_account < amount:
+        raise ValueError
+    else:
+        sender_account -= amount
     """
     Handles the transfer of funds between two user accounts.
 

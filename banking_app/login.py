@@ -1,6 +1,18 @@
 # login.py - Placeholder for login functionality
 
 def login(username, password):
+    if username and password is None:
+        return False
+    elif  username and password is None:
+        raise ValueError
+    
+    for i in username:
+        if i.isdecimal():
+            raise ValueError
+
+    if username not in database.cvs:
+        return (print("login fails"))
+
     """
     Handles the user login process by verifying the provided username and password.
 

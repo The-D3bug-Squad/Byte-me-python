@@ -51,7 +51,7 @@ def is_prime(n):
 def sort_numbers(numbers):
     n = sorted(numbers)
     
-    if numbers.isdigit():
+    if (numbers.isdigit()):
         return TypeError
     else:
         return n
