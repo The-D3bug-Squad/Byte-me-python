@@ -31,8 +31,6 @@ def read_file_lines(filepath):
     except FileNotFoundError as e:
         print(e)
 
-
-
 def factorial(n):
     pass
 
@@ -47,11 +45,13 @@ def is_prime(n):
         print(e)
     
 def sort_numbers(numbers):
-    try:
-        if type(numbers) == type([]):
+    if numbers == []:
+        return []
+    for i in numbers:
+        if type(i) == type(0):
             return sorted(numbers)
-    except TypeError:
-        print("invalid type")
+        else:
+            raise TypeError("Invalid list elements")
 
 def factorial(n):
     pass
@@ -63,9 +63,6 @@ def fibonacci(n):
         fibo_list.append(fibo_list[len(fibo_list) - 2] + fibo_list[len(fibo_list) -1])
 
     return fibo_list[n]
-    
-    
-print(fibonacci(15))
 
 def tower_of_hanoi(n, source, auxiliary, target):
     
