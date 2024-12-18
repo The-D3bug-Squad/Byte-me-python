@@ -81,8 +81,8 @@ def tower_of_hanoi(n, source, auxiliary, target):
 
 class Person:
     def __init__(self, name, age):
-        self.name = name
-        self.age = age
+        self.name = str(name)
+        self.age = int(age)
 
 if __name__ == "__main__":
     # Placeholder functions for Python basics, to be implemented later
