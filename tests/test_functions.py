@@ -43,10 +43,9 @@ class TestPythonBasics(unittest.TestCase):
         1)
 
 
-    def test_factorial_negative(self):
-        self.assertEqual(factorial(-1),
-        "")
-
+def test_factorial_negative(self):
+    with self.assertRaises(ValueError):
+        factorial(-1) 
     
     def test_factorial_5(self):
         self.assertEqual(factorial(5),

@@ -1,34 +1,97 @@
 # Placeholder functions for Python basics, to be implemented later
 
 def add_numbers(a, b):
-    pass
+    if not isinstance(a, (int,float)) or not isinstance(b, (int,float)):
+        raise TypeError
+    
+    return a + b
+
 
 def find_maximum(a, b, c):
-    pass
+    return max(a,b,c)
 
 def is_palindrome(string):
-    pass
+    if not type(string) == str:
+        raise TypeError
+    
+    return string == string[::-1]
 
 def count_word_occurrences(text, word):
-    pass
+    if type(text) == int:
+        raise TypeError
+    return text.lower().count(word)
 
 def read_file_lines(filepath):
-    pass
+    with open(filepath, 'r', errors="ignore") as file:
+        return file.readlines()
 
 def factorial(n):
-    pass
+    if not isinstance(n, int):
+        raise TypeError()
+    
+    if n < 0:
+        raise ValueError()
+    
+    if n == 0 or n == 1:  
+        return 1
+    
+    return n * factorial(n - 1)
+
 
 def is_prime(n):
-    pass
+    if not isinstance(n, int):
+        raise TypeError()
+    
+    if n < 0:
+        raise ValueError()
+    
+    if n < 2:
+        return False  
+    
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    
+    return True
 
 def sort_numbers(numbers):
-    pass
+    for i in numbers:
+        if not isinstance(i, int):
+            raise TypeError()
+        
+    return sorted(numbers)
 
 def factorial(n):
-    pass
+    if not isinstance(n, int):
+        raise TypeError()
+    
+    if n < 0:
+        raise ValueError()
+    
+    if n == 0 or n == 1:  
+        return 1
+    
+    return n * factorial(n - 1)
+
 
 def fibonacci(n):
-    pass
+    if not isinstance(n, int):
+        raise TypeError()
+    
+    if n < 0:
+        raise ValueError()
+    
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+
+    a, b = 0, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    
+    return b
+    
 
 def tower_of_hanoi(n, source, auxiliary, target):
     
@@ -52,7 +115,13 @@ def tower_of_hanoi(n, source, auxiliary, target):
 
 class Person:
     def __init__(self, name, age):
-        pass
+        if not isinstance(name, str):
+            raise TypeError("Name must be a string.")
+        if not isinstance(age, int):
+            raise TypeError("Age must be an integer.")
+        
+        self.name = name
+        self.age = age
 
 
 if __name__ == "__main__":
