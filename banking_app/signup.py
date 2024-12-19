@@ -1,4 +1,6 @@
 # signup.py - Placeholder for signup functionality
+from user_management import read_users, write_users
+
 
 def signup(username, password, email):
     """
@@ -35,3 +37,51 @@ def signup(username, password, email):
     Returns:
     - bool: `True` if the signup is successful, otherwise raises a `ValueError` for invalid input.
     """
+    if not username or not isinstance(username, str):
+        raise ValueError("Username must be a non-empty strin ")
+    if not password or not isinstance(password, str):
+        raise ValueError("Password must be a non-empty")
+    if not email or not isinstance(email, str):
+        raise ValueError("email must be a non-empty ")
+
+    email_regex = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+
+    if not re.match(email_regex, email):
+        raise ValueError("Invalid email format.")
+
+    if len(password) < 8:
+        raise ValueError("Password must be at least 8 characters long.")
+
+    if not any(char.islower() for char in password):
+        raise ValueError("Password must contain at least one lowercase letter.")
+
+    if not any(char.isupper() for char in password):
+        raise ValueError("Password must contain at least one uppercase letter.")
+
+    if not any(char.isdigit() for char in password):
+        raise ValueError("Password must contain at least one digit.")
+
+    weak_passwords = ["12345678", "password", "00000", "123456", "1234578", "123"]
+    if password in weak_passwords:
+        raise ValueError("Password is too weak.")
+
+    # **Username Uniqueness Check**:
+    #     - Check if the `username` already exists in the user database.
+    #     - If the `username` is already taken, raise a `ValueError`.
+
+    users = read_users()
+
+    for user in users:
+        if username == user["username"]:
+            raise ValueError("user exist")
+
+    user = {
+        "username": username,
+        "password": password,
+        "email": email,
+    }
+    write_user = write_user()
+
+    write_user(user)
+
+    return True
