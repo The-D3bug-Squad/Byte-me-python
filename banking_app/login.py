@@ -1,4 +1,3 @@
-import string
 # login.py - Placeholder for login functionality
 
 def login(username, password):
@@ -34,29 +33,3 @@ def login(username, password):
     - bool: `True` if login is successful, `False` if login fails, or raises a `ValueError` for invalid input.
 
     """
-    special_char = string.punctuation
-    trigger = 1
-    while trigger == 1:
-        if special_char in username:
-            raise ValueError("Incorrect username or password!") 
-        if len(username) == 0 or len(password) == 0:
-            raise ValueError("Incorrect username or password!")
-        else:
-            trigger == 0
-    try:
-        db_password  = ""
-        with open("database.csv", "r") as file:
-            db = file.readlines(1)
-            
-            for l in db:
-                if username in l:
-                    db_password == l[1]
-                    return True
-        
-        if db_password == password:
-            return True
-        else:
-            return False
-            
-    except FileNotFoundError:
-        print("File does not exist!1")
