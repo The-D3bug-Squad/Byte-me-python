@@ -1,5 +1,5 @@
 # login.py - Placeholder for login functionality
-
+from  user_management import read_users
 def login(username, password):
     """
     Handles the user login process by verifying the provided username and password.
@@ -33,3 +33,11 @@ def login(username, password):
     - bool: `True` if login is successful, `False` if login fails, or raises a `ValueError` for invalid input.
 
     """
+    def input_validation():
+        # #  **Input Validation**:
+        # - Ensure both `username` and `password` are non-empty strings.
+        # - If either `username` or `password` is empty, raise a `ValueError`.
+        # - Validate that the `username` does not contain special characters (e.g., !, @, #, etc.). If it does, raise a `ValueError`.
+
+        if username != "" AND Password != "":
+            
