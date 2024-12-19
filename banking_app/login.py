@@ -43,7 +43,7 @@ def login(username, password):
             raise ValueError("Incorrect username or password!")
         else:
             trigger == 0
-    try
+    try:
         db_password  = ""
         with open("database.csv", "r") as file:
             db = file.readlines(1)

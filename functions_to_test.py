@@ -29,11 +29,12 @@ def count_word_occurrences(text, word):
     
 
 def read_file_lines(filepath):
-    try:
+    if filepath:
         with open(filepath, "r") as f:
             file = f.readlines()
-    except FileNotFoundError as e:
-        print(e)
+            return file
+    else:
+        raise FileNotFoundError("File not found")
 
 
 def factorial(n):
@@ -49,8 +50,6 @@ def factorial(n):
         fact = fact * i
     return fact
 
-
-print(factorial(0))
 
 def is_prime(n):
     count = 0
@@ -88,6 +87,7 @@ def fibonacci(n):
 
     return fibo_list[n]
 
+
 def tower_of_hanoi(n, source, auxiliary, target):
     
     """
@@ -106,6 +106,7 @@ def tower_of_hanoi(n, source, auxiliary, target):
     >>> tower_of_hanoi(3, 'A', 'B', 'C')
     [('A', 'C'), ('A', 'B'), ('C', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'C'), ('A', 'C')]
     """
+
     pass
 
 class Person:
@@ -122,4 +123,5 @@ class Person:
 if __name__ == "__main__":
     # Placeholder functions for Python basics, to be implemented later
     #to test your functions, you can use the following code
-    print(add_numbers(3, 5)) #e.g
+    # print(add_numbers(3, 5)) #e.g
+    print(read_file_lines("nkulu.txt"))
