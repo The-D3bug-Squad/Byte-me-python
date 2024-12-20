@@ -1,4 +1,5 @@
 # transaction.py - Placeholder for transaction functionality
+from banking_app.user_management import read_users, write_users
 
 def transact(sender_account, receiver_account, amount):
     """
@@ -42,6 +43,49 @@ def transact(sender_account, receiver_account, amount):
     - ValueError: If the `amount` is negative or zero, or if either of the accounts is invalid, or if there are insufficient funds in the `sender_account`, or if the sender and receiver are the same.
 
     """
+    valid_transaction = False
 
+    if sender_account and isinstance(sender_account,str):
+        if receiver_account and isinstance(receiver_account,str):
+            if sender_account != receiver_account:
+                valid_transaction = True
+            else:
+                raise ValueError("sender and receiver accounts must differ")
+        else:
+            raise ValueError("receiver account details invalid")
+    else:
+        raise ValueError("sender account details invalid")
+    
+    if valid_transaction:
+        if amount > 0:
+            pass
+        else:
+            raise ValueError("amount must be greater than zero")
+    
+    all_user_accounts = []
+    if valid_transaction:
+        users = read_users()
+        for user in users:
+            all_user_accounts.append(user["account_id"])
+        if sender_account in all_user_accounts and receiver_account in all_user_accounts:
+            receiver_account_index = all_user_accounts.index(receiver_account)
+            sender_account_index = all_user_accounts.index(sender_account)
+            sender = users[sender_account_index]
+            recever = users[receiver_account_index]
+            sender_balance = float(sender["balance"])
+            receiver_balance = float(recever["balance"])
+            if sender_balance >= amount:
+                sender_balance -= amount
+                receiver_balance += amount
+                sender["balance"] = sender_balance
+                recever["balance"] = receiver_balance
+                write_users(users)
+            else:
+                valid_transaction = False
+                raise ValueError("insufficient balance")
+        else:
+            valid_transaction = False
+            raise ValueError("cannot transact with a nonexistent account")
+    return valid_transaction
     #hint should use read_users and write_users from user_management
-
+#print(transact("account1", "account2", 200.00))

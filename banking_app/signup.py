@@ -1,4 +1,38 @@
 # signup.py - Placeholder for signup functionality
+import csv
+import bcrypt
+
+def password_valid(password):
+    valid_password = False
+    if len(password) >= 8:
+        valid_password = True
+    
+    if valid_password:
+        for character in password:
+            if character.isupper():
+                valid_password = True
+                break
+            else:
+                valid_password = False
+    
+    if valid_password:
+        for character in password:
+            if character.islower():
+                valid_password = True
+                break
+            else:
+                valid_password = False
+    
+    if valid_password:
+        for character in password:
+            if character.isdigit():
+                valid_password = True
+                break
+            else:
+                valid_password = False
+    
+    return valid_password
+            
 
 def signup(username, password, email):
     """
@@ -35,3 +69,63 @@ def signup(username, password, email):
     Returns:
     - bool: `True` if the signup is successful, otherwise raises a `ValueError` for invalid input.
     """
+    valid_credentials = False
+    database_file = "database.csv"
+
+    if username and isinstance(username,str):
+        all_users = []
+        with open(database_file,'r') as file:
+            reader = csv.reader(file)
+            columns = next(reader)
+            for row in reader:
+                all_users.append(row[0])
+        if username not in all_users:
+            valid_credentials = True
+        else:
+            raise ValueError("username already exists")
+    else:
+        raise ValueError("username you've entered is invalid")
+    
+    if valid_credentials:
+        if password and isinstance(password,str):
+            if password_valid(password):
+                hashed_password = bcrypt.hashpw(password.encode("utf-8"),bcrypt.gensalt())
+            else:
+                valid_credentials = False
+                raise ValueError("password does not meet requirements")
+        else:
+            valid_credentials = False
+            raise ValueError("password you've entered is invalid")
+    
+    if valid_credentials:
+        if email and isinstance(email,str):
+            email_regular_expression = "@example.com"
+            if email_regular_expression in email:
+                pass
+            else:
+                valid_credentials = False
+                raise ValueError("email you've entered is invalid")
+        else:
+            valid_credentials = False
+            raise ValueError("email must be a populated text")
+    
+    if valid_credentials:
+        row_counter = 0
+        starting_balance = 0
+
+        with open(database_file,'r+') as file:
+            reader = csv.reader(file)
+            columns = next(reader)
+            for row in reader:
+                row_counter+=1
+            account_no = f"account{row_counter+1}"
+            acc_details = {'username':username,'password':hashed_password,'email':email,'account_id':account_no,'balance':starting_balance}
+            write_to_csv = csv.DictWriter(file,fieldnames=columns)
+            write_to_csv.writerow(acc_details)
+    
+    return valid_credentials
+
+#print(signup("newuser", "SecurePass123", "newuser@example.com"))
+    
+
+
