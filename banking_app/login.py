@@ -1,4 +1,6 @@
 # login.py - Placeholder for login functionality
+import string
+import hashlib
 
 def login(username, password):
     """
@@ -33,3 +35,19 @@ def login(username, password):
     - bool: `True` if login is successful, `False` if login fails, or raises a `ValueError` for invalid input.
 
     """
+   
+    special_characters = "!@#$%^&*()_+-=[]{}|;:'\,.<>?/`~"
+    users = {"user1": hashlib.sha256("password123".encode()).hexdigest()}
+    if username == "" or password == "":
+        raise ValueError
+    if any(i in  username for i in special_characters):
+        raise ValueError
+    if not username:
+        return False 
+    if username in users:
+        stored_password = users[username]
+        return stored_password == hashlib.sha256(password.encode()).hexdigest()
+    return False
+    
+
+login("fjbnrf","furjg#")
