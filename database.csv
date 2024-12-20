@@ -1,3 +1,5 @@
 username,password,email,account_id,balance
 johndoe,hashed_password,johndoe@example.com,account1,1000.50
 janedoe,hashed_password2,janedoe@example.com,account2,500.00
+user1,securepassword123,user1@example.com,account3,1500.00
+existinguser,password,existing@example.com,account4,120.00

@@ -1,4 +1,7 @@
 # login.py - Placeholder for login functionality
+import csv
+import string
+import bcrypt
 
 def login(username, password):
     """
@@ -33,3 +36,46 @@ def login(username, password):
     - bool: `True` if login is successful, `False` if login fails, or raises a `ValueError` for invalid input.
 
     """
+    valid_credentials = False
+    special_characters = "!@#"
+
+    if username:
+        valid_credentials = True
+        if not isinstance(username,str):
+            raise TypeError("username must be a string")
+    else:
+        raise ValueError("username must not be empty.")
+    
+    if valid_credentials:
+        for character in username:
+            if character in special_characters:
+                valid_credentials = False
+                raise ValueError("No special characters allowed")
+            else:
+                continue
+    
+    if valid_credentials:
+        if password:
+            if not isinstance(password,str):
+                raise TypeError("password must be a string")
+        else:
+            raise ValueError("password must not be empty")
+    
+    file = "database.csv"
+    usernames = []
+    hashed_passwords = []
+    with open(file) as file_object:
+        reader = csv.reader(file_object)
+        columns = next(reader)
+        for row in reader:
+            usernames.append(row[0])
+            hashing_password = bcrypt.hashpw(row[1].encode("utf-8"),bcrypt.gensalt())
+            hashed_passwords.append(hashing_password)
+    if username not in usernames:
+        return False
+    elif username in usernames:
+        user_index = usernames.index(username)
+        hashed_password = hashed_passwords[user_index]
+        return bcrypt.checkpw(password.encode("utf-8"),hashed_password)
+
+#print(login("nonexistent_user", "any_password"))
