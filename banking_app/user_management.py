@@ -1,6 +1,6 @@
 import csv
 
-DATABASE_FILE = "banking_app/database.csv"
+DATABASE_FILE = "./database.csv"
 
 def read_users():
     """Reads all users from the CSV database and returns a list of dictionaries."""

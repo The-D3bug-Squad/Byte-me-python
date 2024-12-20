@@ -120,11 +120,12 @@ def signup(username, password, email):
                 row_counter+=1
             account_no = f"account{row_counter+1}"
             acc_details = {'username':username,'password':hashed_password,'email':email,'account_id':account_no,'balance':starting_balance}
-            csv.DictWriter(file,acc_details)
+            write_to_csv = csv.DictWriter(file,fieldnames=columns)
+            write_to_csv.writerow(acc_details)
     
     return valid_credentials
 
-#print(signup("existinguser", "password", "existing@example.com"))
+#print(signup("newuser", "SecurePass123", "newuser@example.com"))
     
 
 
