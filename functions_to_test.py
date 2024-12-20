@@ -54,10 +54,7 @@ def is_prime(n):
     for i in range(2,n):
         if n % i == 0:
             return False
-    return True
-    
-    
-    
+    return True 
 
 def sort_numbers(numbers):
     for i in numbers:
