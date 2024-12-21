@@ -1,34 +1,63 @@
 # Placeholder functions for Python basics, to be implemented later
+import string
 
 def add_numbers(a, b):
-    pass
+    return a + b
 
 def find_maximum(a, b, c):
-    pass
+    return max(a,b,c)
 
 def is_palindrome(string):
-    pass
+    return string == string[::-1]
 
 def count_word_occurrences(text, word):
-    pass
+    text = text.split()
+    return text.count(word)
 
 def read_file_lines(filepath):
-    pass
+    with open(filepath, 'r') as f:
+        return f.readlines()
 
 def factorial(n):
-    pass
+    x = 1
+    for i in range(1, n+ 1):
+        x *= i
+    return x
 
 def is_prime(n):
-    pass
+    if n < 0:
+        raise ValueError("Prime not defined for negative numbers")
+    if n <= 1:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
 
 def sort_numbers(numbers):
-    pass
+    numbers = []
+    return numbers.sort(reverse = True)
+    
 
 def factorial(n):
-    pass
-
+   if n == 1 or n == 0:
+       return 1
+   if n < 0:
+        return ""
+   if n < 0:
+       raise ValueError("Invalid input type")
+   x = 1
+   for i in range(1, n+ 1):
+        x *= i
+   return x
+  
 def fibonacci(n):
-    pass
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fibonacci(n - 1) + fibonacci(n - 2)
 
 def tower_of_hanoi(n, source, auxiliary, target):
     
@@ -52,8 +81,8 @@ def tower_of_hanoi(n, source, auxiliary, target):
 
 class Person:
     def __init__(self, name, age):
-        pass
-
+        self.name = str(name)
+        self.age = int(age)
 
 if __name__ == "__main__":
     # Placeholder functions for Python basics, to be implemented later
