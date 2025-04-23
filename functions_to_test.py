@@ -1,34 +1,91 @@
 # Placeholder functions for Python basics, to be implemented later
 
 def add_numbers(a, b):
-    pass
+    return a+b
 
 def find_maximum(a, b, c):
-    pass
+    maximum=[a,b,c]
+    return max(maximum)
 
 def is_palindrome(string):
-    pass
+    if string==string[::-1]:
+        return True
+    else:
+        return False
 
 def count_word_occurrences(text, word):
-    pass
+    
+    if isinstance(text, int):
+        raise TypeError
+    else:
+        count=0
+        word1=text.lower()
+        for i in word1.split():
+            if i == word :
+                count+=1
+        return count
+        
 
 def read_file_lines(filepath):
-    pass
+    with open(filepath,'r') as f:
+        the=f.read().split()
+
+    return the
 
 def factorial(n):
-    pass
+    if n<0:
+        raise ValueError
+    elif isinstance(n, str):
+        raise TypeError
+    else:
+        # count=1
+        # if n==0:
+        #     return count
+        # else:
+            # for i in range(n+1):
+            #     count*=i
+        return n
+
 
 def is_prime(n):
-    pass
+    if n<0:
+        raise ValueError
+    elif isinstance(n, str):
+        raise TypeError
+    else:
+        count=0
+        for i in range(2,n):
+            if n%i==0:
+                count+=1
+        if n==1:
+            return False
+        elif count>0:
+            return False
+        else:
+            return True
 
 def sort_numbers(numbers):
-    pass
+    if len(numbers)>0:
+        for i in numbers:
+            if isinstance(i,str):
+                raise TypeError
+            else:
+                return sorted(numbers)
+    else:
+        return numbers
 
 def factorial(n):
     pass
 
 def fibonacci(n):
-    pass
+    if n==0 or n==1:
+        return n
+    else:
+        count=[0,1]
+        for i in range(n):
+            num=count[-1]+count[-2]
+            count.append(num)
+        return count
 
 def tower_of_hanoi(n, source, auxiliary, target):
     
@@ -52,7 +109,11 @@ def tower_of_hanoi(n, source, auxiliary, target):
 
 class Person:
     def __init__(self, name, age):
-        pass
+        if isinstance(name,str) and isinstance(age,int):
+            self.name=name
+            self.age=age
+        else:
+            raise TypeError
 
 
 if __name__ == "__main__":

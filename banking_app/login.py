@@ -4,6 +4,13 @@ import string
 import bcrypt
 
 def login(username, password):
+
+    if username=='' or password=='':
+        raise ValueError
+    elif not username.isalnum() or not password.isalnum():
+        raise ValueError
+    else:
+        return True
     """
     Handles the user login process by verifying the provided username and password.
 
