@@ -6,6 +6,7 @@ def read_users():
     """Reads all users from the CSV database and returns a list of dictionaries."""
     users = []
     try:
+
         with open(DATABASE_FILE, mode='r') as file:
             reader = csv.DictReader(file)
             for row in reader:
